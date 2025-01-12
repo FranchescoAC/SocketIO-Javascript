@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.IO Ejemplo</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <h1>¡Hola desde Socket.IO!</h1>
+    <button id="sendMessage">Enviar mensaje al servidor</button>
+    <p id="response"></p>
+
+    <script>
+        // Conectar al servidor Socket.IO
+        const socket = io();
+
+        // Enviar un mensaje al servidor cuando el botón sea presionado
+        document.getElementById('sendMessage').onclick = function() {
+            socket.emit('message', 'Hola servidor!');
+        };
+
+        // Escuchar el evento 'message' desde el servidor
+        socket.on('message', function(data) {
+            document.getElementById('response').textContent = 'Respuesta del servidor: ' + data;
+        });
+    </script>
+</body>
+</html>
